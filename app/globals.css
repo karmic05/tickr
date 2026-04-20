@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 248 250 252;
+  --panel: 255 255 255;
+  --border: 226 232 240;
+  --fg: 15 23 42;
+  --muted: 100 116 139;
+  --accent: 79 70 229;
+  --up: 22 163 74;
+  --down: 220 38 38;
+}
+
+.dark {
+  --bg: 9 11 17;
+  --panel: 17 20 30;
+  --border: 38 43 58;
+  --fg: 237 241 247;
+  --muted: 148 163 184;
+  --accent: 129 140 248;
+  --up: 52 211 153;
+  --down: 248 113 113;
+}
+
+html, body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--fg));
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+.card {
+  @apply bg-panel border border-border rounded-xl;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors;
+}
+.btn-primary { @apply bg-accent text-white hover:opacity-90; }
+.btn-ghost { @apply hover:bg-panel border border-transparent hover:border-border; }
+
+.chip {
+  @apply inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium;
+}
+
+.up { color: rgb(var(--up)); }
+.down { color: rgb(var(--down)); }
+
+.skeleton {
+  @apply animate-pulse bg-border/60 rounded-md;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgb(var(--border)); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--muted) / 0.5); }
+
+/* ticker marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 60s linear infinite;
+}
+.marquee:hover { animation-play-state: paused; }
